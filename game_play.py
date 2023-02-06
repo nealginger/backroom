@@ -11,15 +11,15 @@ def get_difficulty():
 def start_game():
     print("One day you are happily playing at the park, but when you get pushed down the slide to hard you noclip out of reality")
 
-def lose(player_sanity, suvival_rounds):
-    if player_sanity <= 0:
+def lose(player):
+    if player.sanity <= 0:
         print("You lost all your sanity")
         time.sleep(1)
         print(".....")
         time.sleep(1)
         print("You lost control of your mind now you are lost forever in backrooms")
         time.sleep(1)
-        print("you survived for " + str(suvival_rounds) + " levels")
+        print("you survived for " + str(player.survival_rounds) + " levels")
         return True
     return False
 

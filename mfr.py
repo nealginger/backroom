@@ -143,12 +143,11 @@ I want to (Mama-dum-day-do) I want to, I want to know!
     },
 }
 
-def encounter_mfr(player_sanity):
+def encounter_mfr(player):
     chance_of_encouter = random.randint(0, 3)
     if chance_of_encouter == 1:
         mfr = random.choice(list(mfrs))
-        player_sanity -= mfrs[mfr]["damage"]
+        player.sanity -= mfrs[mfr]["damage"]
         print("You've been attacked by " + str(mfr))
         print(mfrs[mfr]["description"])
-        print("You've got " + str(player_sanity) + " sanity left")
-    return player_sanity
+        print("You've got " + str(player.sanity) + " sanity left")

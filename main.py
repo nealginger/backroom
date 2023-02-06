@@ -1,18 +1,18 @@
 import random
 import room
 import game_play
-import player
+from player import Player
 import mfr
 
 def start_main_gamplay(state):
-    state["suvival_rounds"] += 1
+    state["player"].survival_rounds += 1
     # enter room
-    room.enter_room(state["current_room"])
+    room.enter_room(state["player"].current_room)
 
     # MFR events
-    state["player_sanity"] = mfr.encounter_mfr(state["player_sanity"])
+    mfr.encounter_mfr(state["player"])
 
-    if game_play.lose(state["player_sanity"], state["suvival_rounds"]):
+    if game_play.lose(state["player"]):
         return
 
     # generate exits
@@ -31,8 +31,6 @@ def start_main_gamplay(state):
 # game start here
 game_play.start_game()
 start_main_gamplay({
-    "player_sanity": player.get_player_sanity(game_play.get_difficulty()),
-    "current_room": random.randint(0, 1),
+    "player": Player(),
     "win_room": random.randint(0, len(room.rooms) - 1),
-    "suvival_rounds": 0
 })
